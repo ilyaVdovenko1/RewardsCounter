@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RewardsCounter.Api", "RewardsCounter.Api\RewardsCounter.Api.csproj", "{7C54770A-EB68-4C27-9110-BF3320D0BAFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RewardsCounter.Tests", "RewardsCounter.Tests\RewardsCounter.Tests.csproj", "{83BA4F0E-9CD2-49DB-8F3B-319BFC286877}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7C54770A-EB68-4C27-9110-BF3320D0BAFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C54770A-EB68-4C27-9110-BF3320D0BAFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C54770A-EB68-4C27-9110-BF3320D0BAFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C54770A-EB68-4C27-9110-BF3320D0BAFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83BA4F0E-9CD2-49DB-8F3B-319BFC286877}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83BA4F0E-9CD2-49DB-8F3B-319BFC286877}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83BA4F0E-9CD2-49DB-8F3B-319BFC286877}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83BA4F0E-9CD2-49DB-8F3B-319BFC286877}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
