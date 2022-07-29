@@ -187,19 +187,30 @@ public class DefaultRewardsCounterTests
         },
     };
 
-    private readonly Dictionary<decimal, int> defaultRewardsRules = new ()
+    private readonly RewardsCountingConfiguration defaultRewardsRules = new()
     {
-        { 50, 1 },
-        { 100, 1 },
+        Rewards = new List<RewardConfiguration>()
+        {
+            new RewardConfiguration()
+            {
+                Points = 1,
+                Sum = new decimal(50)
+            },
+            new RewardConfiguration()
+            {
+                Points = 1,
+                Sum = new decimal(100)
+            }
+        }
+
     };
 
-    [ExpectedException(typeof(ArgumentNullException))]
+        [ExpectedException(typeof(ArgumentNullException))]
     [TestMethod]
     public void CountReward_NullClient_NullException()
     {
         // init
-        var configuration = new RewardCountingConfiguration(this.defaultRewardsRules);
-        var service = new DefaultRewardsCounter(configuration);
+        var service = new DefaultRewardsCounter(this.defaultRewardsRules);
 #pragma warning disable CS8600
         Customer customer = null;
 #pragma warning restore CS8600
@@ -218,8 +229,7 @@ public class DefaultRewardsCounterTests
     public void CountReward_120USD_90Points()
     {
         // init
-        var configuration = new RewardCountingConfiguration(this.defaultRewardsRules);
-        var service = new DefaultRewardsCounter(configuration);
+        var service = new DefaultRewardsCounter(this.defaultRewardsRules);
         var customer = this.testCustomers[4];
         var expected = new decimal(90);
 
@@ -236,8 +246,7 @@ public class DefaultRewardsCounterTests
     public void CountReward_nullWithPeriod_NullException()
     {
         // init
-        var configuration = new RewardCountingConfiguration(this.defaultRewardsRules);
-        var service = new DefaultRewardsCounter(configuration);
+        var service = new DefaultRewardsCounter(this.defaultRewardsRules);
 #pragma warning disable CS8600
         Customer customer = null;
 #pragma warning restore CS8600
@@ -256,8 +265,7 @@ public class DefaultRewardsCounterTests
     public void CountReward_WithInversePeriod_OutOfRangeException()
     {
         // init
-        var configuration = new RewardCountingConfiguration(this.defaultRewardsRules);
-        var service = new DefaultRewardsCounter(configuration);
+        var service = new DefaultRewardsCounter(this.defaultRewardsRules);
         var customer = this.testCustomers[4];
 
         // act
@@ -272,8 +280,7 @@ public class DefaultRewardsCounterTests
     public void CountReward_WithPeriodEarlyThenClientRegistered_OutOfRangeException()
     {
         // init
-        var configuration = new RewardCountingConfiguration(this.defaultRewardsRules);
-        var service = new DefaultRewardsCounter(configuration);
+        var service = new DefaultRewardsCounter(this.defaultRewardsRules);
         var customer = new Customer()
         {
             CreationDate = new DateTime(2023, 1, 12),
@@ -292,13 +299,42 @@ public class DefaultRewardsCounterTests
     public void CountReward_51USD_1Point()
     {
         // init
-        var configuration = new RewardCountingConfiguration(this.defaultRewardsRules);
-        var service = new DefaultRewardsCounter(configuration);
+        var service = new DefaultRewardsCounter(this.defaultRewardsRules);
         var customer = this.testCustomers[2];
         var expected = new decimal(1);
 
         // act
         var reward = service.CountReward(this.testTransactions, customer,  new DateTime(2021, 2, 1),  new DateTime(2021, 2, 3));
+
+        // assert
+        Assert.AreEqual(expected, reward.PointsTotal);
+        Assert.AreEqual(customer,reward.Customer);
+    }
+    
+    [TestMethod]
+    public void CountReward_Minus20USD_0Point()
+    {
+        // init
+        var service = new DefaultRewardsCounter(this.defaultRewardsRules);
+        var customer = new Customer()
+        {
+            CreationDate = new DateTime(2022, 7, 28),
+            Id = Guid.Parse("41d9aa31-75c3-4df3-8563-375fb4be3b29"),
+            Name = "Owner"
+        };
+        
+        var expected = new decimal(0);
+        var transaction = new Transaction()
+        {
+            Id = Guid.NewGuid(),
+            ClientId = Guid.Parse("41d9aa31-75c3-4df3-8563-375fb4be3b29"),
+            Sum = new decimal(-20),
+            Timestamp = new DateTime(2022, 7, 29),
+        };
+        var transactions = new List<Transaction> {transaction};
+
+        // act
+        var reward = service.CountReward(transactions, customer);
 
         // assert
         Assert.AreEqual(expected, reward.PointsTotal);
