@@ -7,20 +7,23 @@ using RewardsCounter.Api.Services.Models;
 
 const string connectionStringName = "DefaultConnectionString";
 const string counterOptionsName = "RewardCountingConfiguration";
+const string healthCheckRoute = "api/health";
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
-
+var connectionString = builder.Configuration.GetConnectionString(connectionStringName);
 builder.Services.AddDbContext<DataContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString(connectionStringName));
+    options.UseSqlServer(connectionString);
 });
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDefaultAppService();
+builder.Services.AddHealthChecks()
+    .AddSqlServer(connectionString, timeout: TimeSpan.FromSeconds(2));
 
 var counterOpt = builder.Configuration.GetSection(counterOptionsName);
 var rewardCountOpt = new RewardsCountingConfiguration();
@@ -42,5 +45,6 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapHealthChecks(healthCheckRoute);
 
 app.Run();

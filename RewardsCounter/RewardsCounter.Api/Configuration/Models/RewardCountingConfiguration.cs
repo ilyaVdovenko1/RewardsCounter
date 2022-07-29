@@ -15,15 +15,6 @@ public class RewardsCountingConfiguration
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="RewardsCountingConfiguration"/> class.
-    /// </summary>
-    /// <param name="rewards">Rewards rules.</param>
-    public RewardsCountingConfiguration(IList<RewardConfiguration> rewards)
-    {
-        this.Rewards = new List<RewardConfiguration>(rewards);
-    }
-
-    /// <summary>
     /// Gets or sets border of money where spend and bonus for it.
     /// </summary>
     /// <value>

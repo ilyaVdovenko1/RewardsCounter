@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RewardsCounter.Api.Configuration.Models;
 using RewardsCounter.Api.Domain;
+using RewardsCounter.Api.Exceptions;
 using RewardsCounter.Api.Services.Models;
 
 namespace RewardsCounter.Tests;
@@ -261,8 +262,8 @@ public class DefaultRewardsCounterTests
     }
     
     [TestMethod]
-    [ExpectedException(typeof(ArgumentOutOfRangeException))]
-    public void CountReward_WithInversePeriod_OutOfRangeException()
+    [ExpectedException(typeof(InvalidRequestedPeriodException))]
+    public void CountReward_WithInversePeriod_InvalidRequestedPeriodException()
     {
         // init
         var service = new DefaultRewardsCounter(this.defaultRewardsRules);
@@ -276,8 +277,8 @@ public class DefaultRewardsCounterTests
     }
     
     [TestMethod]
-    [ExpectedException(typeof(ArgumentOutOfRangeException))]
-    public void CountReward_WithPeriodEarlyThenClientRegistered_OutOfRangeException()
+    [ExpectedException(typeof(InvalidRequestedPeriodException))]
+    public void CountReward_WithPeriodEarlyThenClientRegistered_InvalidRequestedPeriodException()
     {
         // init
         var service = new DefaultRewardsCounter(this.defaultRewardsRules);
