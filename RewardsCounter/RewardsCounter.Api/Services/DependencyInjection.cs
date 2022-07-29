@@ -1,4 +1,5 @@
-﻿using RewardsCounter.Api.Repositories.Data;
+﻿using RewardsCounter.Api.Exceptions;
+using RewardsCounter.Api.Repositories.Data;
 using RewardsCounter.Api.Services.Interfaces;
 using RewardsCounter.Api.Services.Models;
 
@@ -20,7 +21,7 @@ public static class DependencyInjection
         var context = serviceProvider.GetService<DataContext>();
         if (context is null)
         {
-            throw new ArgumentException("Can not recognize data context in service collection");
+            throw new ServiceNotFoundException("Can not recognize data context in service collection");
         }
 
         serviceCollection.AddSingleton<IAppService>(new DefaultAppService(context));
