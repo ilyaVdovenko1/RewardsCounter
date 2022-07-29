@@ -9,13 +9,13 @@ namespace RewardsCounter.Api.Services.Models;
 /// </summary>
 public class DefaultRewardsCounter : IRewardsCounter
 {
-    private readonly RewardCountingConfiguration countingConfiguration;
+    private readonly RewardsCountingConfiguration countingConfiguration;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="DefaultRewardsCounter"/> class.
     /// </summary>
     /// <param name="countingConfiguration">Represents reward rules.</param>
-    public DefaultRewardsCounter(RewardCountingConfiguration countingConfiguration)
+    public DefaultRewardsCounter(RewardsCountingConfiguration countingConfiguration)
     {
         this.countingConfiguration = countingConfiguration;
     }
@@ -36,10 +36,10 @@ public class DefaultRewardsCounter : IRewardsCounter
         var clientTransactionsSum =
             transactions.Where(transaction => transaction.ClientId == customer.Id && transaction.Sum > 0).Sum(item => item.Sum);
 
-        var fittingBonuses = this.countingConfiguration.Rewards.Where(rule => rule.Key <= clientTransactionsSum);
+        var fittingBonuses = this.countingConfiguration.Rewards.Where(rule => rule.Sum <= clientTransactionsSum);
 
         var points =
-            fittingBonuses.Sum(fittingBonus => (clientTransactionsSum - fittingBonus.Key) * fittingBonus.Value);
+            fittingBonuses.Sum(fittingBonus => (clientTransactionsSum - fittingBonus.Sum) * fittingBonus.Points);
 
         return new Reward()
         {
