@@ -19,7 +19,7 @@ public record Customer
     /// <value>
     /// Client name.
     /// </value>
-    public string Name { get; init; }
+    public string Name { get; init; } = null!;
 
     /// <summary>
     /// Gets time client sign up.

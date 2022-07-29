@@ -11,7 +11,7 @@ public class Reward
     /// <value>
     /// Customer that earn reward.
     /// </value>
-    public Customer Customer { get; init; }
+    public Customer Customer { get; init; } = null!;
 
     /// <summary>
     /// Gets total sum of points.
