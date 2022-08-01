@@ -1,0 +1,28 @@
+﻿version: '3'
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "76x1#@P%b5sx"
+      MSSQL_PID: "Express"
+    ports:
+      - "1433:1433"
+  rewards-api:
+    environment:
+      - USER_SECRETS_ID=5a11e693-3d2c-429b-a30b-29b8df9b8e29
+      - ASPNETCORE_ENVIRONMENT=Development
+    build: 
+      context: .
+      dockerfile: ./RewardsCounter.Api/Dockerfile
+    ports:
+      - "8080:80"
+    volumes:
+      # map the dotnet user-secret folder
+      - $APPDATA/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+    depends_on:
+      - db
+    links:
+      - db
+    restart: on-failure
+      
