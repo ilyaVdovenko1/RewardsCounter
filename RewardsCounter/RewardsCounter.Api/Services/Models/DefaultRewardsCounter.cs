@@ -39,21 +39,15 @@ public class DefaultRewardsCounter : IRewardsCounter
         }
 
         this.logger?.LogTrace("Processing reward for client with id {Id}", customer.Id);
+        var fittingTransactions = transactions.Where(transaction => transaction.ClientId == customer.Id);
 
-        var clientTransactionsSum =
-            transactions.Where(transaction => transaction.ClientId == customer.Id && transaction.Sum > 0).Sum(item => item.Sum);
-
-        var fittingBonuses = this.countingConfiguration.Rewards.Where(rule => rule.Sum <= clientTransactionsSum);
-
-        var points =
-            fittingBonuses.Sum(fittingBonus => (clientTransactionsSum - fittingBonus.Sum) * fittingBonus.Points);
-
-        this.logger?.LogTrace("Processed reward for client with id {Id}. Reward: {Reward}", customer.Id, points);
+        var clientTransactionsSum = this.CountReward(fittingTransactions);
+        this.logger?.LogTrace("Processed reward for client with id {Id}. Reward: {Reward}", customer.Id, clientTransactionsSum);
 
         return new Reward()
         {
             Customer = customer,
-            PointsTotal = points,
+            PointsTotal = clientTransactionsSum,
         };
     }
 
@@ -87,6 +81,56 @@ public class DefaultRewardsCounter : IRewardsCounter
             throw new InvalidRequestedPeriodException(nameof(start), "Start value can not be greater then customer registration date.");
         }
 
-        return this.CountReward(transactions.Where(item => item.Timestamp >= start && item.Timestamp <= end), customer);
+        var fittingTransactions = transactions.Where(item => item.Timestamp >= start && item.Timestamp <= end).ToList();
+
+        var points = this.CountReward(fittingTransactions);
+        var monthRewards = this.CountMonthsRewards(fittingTransactions, start, end);
+
+        return new Reward()
+        {
+            Customer = customer,
+            MonthReward = monthRewards,
+            PointsTotal = points,
+        };
+    }
+
+    private IEnumerable<MonthReward> CountMonthsRewards(IEnumerable<Transaction> transactions, DateTime start,
+        DateTime end)
+    {
+        var monthRewards = new List<MonthReward>();
+
+        for (var i = start; i < end; i = i.AddMonths(1))
+        {
+            monthRewards.Add(this.CountMonthReward(transactions, i.Month, i.Year));
+        }
+
+        return monthRewards;
+    }
+
+    private MonthReward CountMonthReward(IEnumerable<Transaction> transactions, int month, int year)
+    {
+        var fittingTransactions = transactions.Where(t => t.Timestamp.Month == month);
+        var monthReward = this.CountReward(fittingTransactions);
+        return new MonthReward()
+        {
+            Bonus = monthReward,
+            Month = month,
+            Year = year,
+        };
+    }
+
+    private decimal CountReward(IEnumerable<Transaction> transactions)
+    {
+        var clientTransactionsSum =
+            transactions.Where(transaction => transaction.Sum > 0).Sum(item => item.Sum);
+
+        var fittingBonuses = this.countingConfiguration.Rewards.Where(rule => rule.Sum <= clientTransactionsSum);
+
+        var points =
+            fittingBonuses.Sum(fittingBonus => (clientTransactionsSum - fittingBonus.Sum) * fittingBonus.Points);
+
+        this.logger?.LogTrace("Processed reward for client. Reward: {Reward}", points);
+
+        return points;
     }
 }

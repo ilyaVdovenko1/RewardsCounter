@@ -119,6 +119,7 @@ public class RewardsController : ControllerBase
             {
                 CustomerName = reward.Customer.Name,
                 PointsTotal = reward.PointsTotal,
+                MonthReward = reward.MonthReward,
             });
         }
         catch (InvalidRequestedPeriodException e)

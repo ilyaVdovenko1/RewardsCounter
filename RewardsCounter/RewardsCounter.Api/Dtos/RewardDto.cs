@@ -22,4 +22,6 @@ public class RewardDto
     /// Total sum of points.
     /// </value>
     public decimal PointsTotal { get; init; }
+    
+    public IEnumerable<MonthReward> MonthReward { get; init; }
 }

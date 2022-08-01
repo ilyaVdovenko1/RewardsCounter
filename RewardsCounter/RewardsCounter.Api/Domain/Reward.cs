@@ -20,4 +20,12 @@ public class Reward
     /// Total sum of points.
     /// </value>
     public decimal PointsTotal { get; init; }
+
+    /// <summary>
+    /// Gets reward per month.
+    /// </summary>
+    /// <value>
+    /// Total sum of points.
+    /// </value>
+    public IEnumerable<MonthReward> MonthReward { get; init; }
 }
