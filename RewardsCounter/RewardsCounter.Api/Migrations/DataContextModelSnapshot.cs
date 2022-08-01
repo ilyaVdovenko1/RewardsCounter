@@ -118,122 +118,185 @@ namespace RewardsCounter.Api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("23edcf61-361a-4083-9677-06d0b1fe8725"),
+                            Id = new Guid("75e22538-0d68-4398-a2e5-79d15089143f"),
                             ClientId = new Guid("b96c7e78-46bd-4057-8990-e3d2f82e0e8b"),
                             Sum = 12.3m,
                             Timestamp = new DateTime(2022, 6, 25, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = new Guid("ad57135d-f1e8-42ed-8ca6-811b11b4ec89"),
+                            Id = new Guid("eb63d06e-3111-4e82-8a7c-10284e3691c4"),
                             ClientId = new Guid("b96c7e78-46bd-4057-8990-e3d2f82e0e8b"),
                             Sum = 1.3m,
                             Timestamp = new DateTime(2021, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = new Guid("238cd0b6-45ed-4502-a6af-d939489213b2"),
+                            Id = new Guid("fab7c092-3c78-4cd2-8766-4bd109ccde81"),
                             ClientId = new Guid("b96c7e78-46bd-4057-8990-e3d2f82e0e8b"),
                             Sum = 100m,
                             Timestamp = new DateTime(2020, 2, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = new Guid("a2f55d68-ac21-4a00-a3c1-d8d961a495d6"),
+                            Id = new Guid("ebc0449e-9b55-4fa2-b9a4-a9d4e910bad7"),
                             ClientId = new Guid("b96c7e78-46bd-4057-8990-e3d2f82e0e8b"),
                             Sum = 100m,
                             Timestamp = new DateTime(2022, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = new Guid("a0dba403-a8ec-49d1-abe7-e488ce54ac1e"),
+                            Id = new Guid("e10c1dc5-343a-4afe-ac90-b2a5353c2c11"),
                             ClientId = new Guid("b96c7e78-46bd-4057-8990-e3d2f82e0e8b"),
                             Sum = 100m,
                             Timestamp = new DateTime(2022, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = new Guid("f88af966-cf72-489a-b560-66eb07a37633"),
+                            Id = new Guid("f2b61f6a-9e6c-4314-acf3-2bce84b17d68"),
                             ClientId = new Guid("b96c7e78-46bd-4057-8990-e3d2f82e0e8b"),
                             Sum = 100m,
                             Timestamp = new DateTime(2022, 5, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = new Guid("ef330b77-5d98-4fe5-8eb4-013a617d02a8"),
+                            Id = new Guid("b9cb7f7e-f152-4abf-8b5f-5d8fb64c301d"),
                             ClientId = new Guid("99135b8d-cda6-493a-8994-6faecd21bf48"),
                             Sum = 12.3m,
                             Timestamp = new DateTime(2022, 6, 25, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = new Guid("10069a9a-2547-4237-8a86-3eb457707171"),
+                            Id = new Guid("d3973d00-5cf5-420d-9d78-18b69f373363"),
+                            ClientId = new Guid("b96c7e78-46bd-4057-8990-e3d2f82e0e8b"),
+                            Sum = 100m,
+                            Timestamp = new DateTime(2022, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = new Guid("a2ec13f7-ba45-43a5-ba55-52568a5321ee"),
+                            ClientId = new Guid("b96c7e78-46bd-4057-8990-e3d2f82e0e8b"),
+                            Sum = 100m,
+                            Timestamp = new DateTime(2022, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = new Guid("2de82f28-1a5a-4d7f-80e8-e51690c54cbf"),
+                            ClientId = new Guid("b96c7e78-46bd-4057-8990-e3d2f82e0e8b"),
+                            Sum = 50m,
+                            Timestamp = new DateTime(2022, 5, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = new Guid("c02ea405-d9cd-487e-9bfc-6e926b62edd6"),
                             ClientId = new Guid("3b217a1d-c7d9-40da-a4d4-14e4c3a2ae2b"),
                             Sum = 130m,
                             Timestamp = new DateTime(2021, 6, 25, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = new Guid("b03a986a-da34-422f-9f42-31330a5225c2"),
+                            Id = new Guid("d78e7672-7184-49c6-8fab-6caa28904115"),
                             ClientId = new Guid("3b217a1d-c7d9-40da-a4d4-14e4c3a2ae2b"),
                             Sum = 12m,
                             Timestamp = new DateTime(2021, 4, 25, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = new Guid("a52e033e-9d81-43e7-b293-7b85104f8355"),
+                            Id = new Guid("a3c8441d-a6da-4cab-ac2d-eaa8389309d6"),
                             ClientId = new Guid("3b217a1d-c7d9-40da-a4d4-14e4c3a2ae2b"),
                             Sum = 51m,
                             Timestamp = new DateTime(2021, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = new Guid("b25417e4-dfdf-473d-8f2d-dad400ef4c8e"),
-                            ClientId = new Guid("b96c7e78-46bd-4057-8990-e3d2f82e0e8b"),
+                            Id = new Guid("76b6ef34-973a-436b-aa4d-c44e3e8acd33"),
+                            ClientId = new Guid("de632b7e-627d-4bfe-9f96-edc290d32bbe"),
                             Sum = 12.3m,
                             Timestamp = new DateTime(2022, 6, 25, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = new Guid("3c70c82d-6f5d-4652-b604-84615fe502dc"),
-                            ClientId = new Guid("b96c7e78-46bd-4057-8990-e3d2f82e0e8b"),
+                            Id = new Guid("417aeabc-471a-47e9-b8af-690a9ea6a22e"),
+                            ClientId = new Guid("de632b7e-627d-4bfe-9f96-edc290d32bbe"),
                             Sum = 12.3m,
                             Timestamp = new DateTime(2022, 6, 25, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = new Guid("1231b58e-da52-4274-8fe4-6193f18edd89"),
+                            Id = new Guid("aa5be972-f647-457c-b072-1884d5a47353"),
+                            ClientId = new Guid("b96c7e78-46bd-4057-8990-e3d2f82e0e8b"),
+                            Sum = 100m,
+                            Timestamp = new DateTime(2022, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = new Guid("568d2fd0-4508-4901-8c06-bcf923787d5a"),
+                            ClientId = new Guid("b96c7e78-46bd-4057-8990-e3d2f82e0e8b"),
+                            Sum = 50m,
+                            Timestamp = new DateTime(2022, 3, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = new Guid("7b4db32e-6eeb-4e5e-852c-d97b43645167"),
+                            ClientId = new Guid("b96c7e78-46bd-4057-8990-e3d2f82e0e8b"),
+                            Sum = 50m,
+                            Timestamp = new DateTime(2022, 5, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = new Guid("bdb20564-9638-452d-9faa-f021be8024e6"),
                             ClientId = new Guid("002f9c00-7523-44f1-ab9e-f906f368ab17"),
                             Sum = 120m,
                             Timestamp = new DateTime(2022, 6, 25, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = new Guid("6883d3fd-d547-4694-b419-25c9600e9b00"),
+                            Id = new Guid("6d7536ef-39d8-4bc6-bedf-8118fe6602e3"),
+                            ClientId = new Guid("fa05b53c-da5e-4a30-9751-744afdcc5198"),
+                            Sum = 12.3m,
+                            Timestamp = new DateTime(2022, 6, 25, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = new Guid("3c349570-1912-4040-b021-7e52b81c9acf"),
                             ClientId = new Guid("b96c7e78-46bd-4057-8990-e3d2f82e0e8b"),
                             Sum = 12.3m,
                             Timestamp = new DateTime(2022, 6, 25, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = new Guid("3bd7f00e-077b-403a-b24f-5b3d4d2e5b26"),
-                            ClientId = new Guid("b96c7e78-46bd-4057-8990-e3d2f82e0e8b"),
+                            Id = new Guid("dfb3acaf-72c8-48a6-b7df-1011e6e53e46"),
+                            ClientId = new Guid("b5280851-7383-49d0-8375-e98f84e1ce3b"),
                             Sum = 12.3m,
                             Timestamp = new DateTime(2022, 6, 25, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = new Guid("5dd15517-693b-4af3-9df1-0e4db429e76a"),
-                            ClientId = new Guid("b96c7e78-46bd-4057-8990-e3d2f82e0e8b"),
+                            Id = new Guid("a6d58571-f8ed-4e5f-9322-5cb422ae3364"),
+                            ClientId = new Guid("7203c9dd-6778-435e-8788-ce3532393fd0"),
                             Sum = 12.3m,
                             Timestamp = new DateTime(2022, 6, 25, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = new Guid("ce4bedd7-9c76-429a-98b7-1915055972f7"),
+                            Id = new Guid("6608c273-6504-45ab-aea6-7042110c1f7c"),
                             ClientId = new Guid("b96c7e78-46bd-4057-8990-e3d2f82e0e8b"),
-                            Sum = 12.3m,
-                            Timestamp = new DateTime(2022, 6, 25, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Sum = 40m,
+                            Timestamp = new DateTime(2022, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = new Guid("635085de-13be-41f3-a191-a20913d8ecb6"),
+                            ClientId = new Guid("b96c7e78-46bd-4057-8990-e3d2f82e0e8b"),
+                            Sum = 100m,
+                            Timestamp = new DateTime(2022, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = new Guid("c4d58431-fa38-4feb-a0fd-ef5d30601847"),
+                            ClientId = new Guid("b96c7e78-46bd-4057-8990-e3d2f82e0e8b"),
+                            Sum = 50m,
+                            Timestamp = new DateTime(2022, 5, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 #pragma warning restore 612, 618

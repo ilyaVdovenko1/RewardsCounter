@@ -12,6 +12,13 @@ public class DataContext : DbContext
     /// <summary>
     /// Initializes a new instance of the <see cref="DataContext"/> class.
     /// </summary>
+    public DataContext()
+    {
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="DataContext"/> class.
+    /// </summary>
     /// <param name="contextOptions">Options for data context.</param>
     public DataContext(DbContextOptions<DataContext> contextOptions)
         : base(contextOptions)
@@ -24,7 +31,7 @@ public class DataContext : DbContext
     /// <value>
     /// Set of transactions from db.
     /// </value>
-    public DbSet<Transaction> Transactions { get; set; }
+    public virtual DbSet<Transaction> Transactions { get; set; }
 
     /// <summary>
     /// Gets or sets set of clients from db.
@@ -32,7 +39,7 @@ public class DataContext : DbContext
     /// <value>
     /// Set of clients from db.
     /// </value>
-    public DbSet<Customer> Customers { get; set; }
+    public virtual DbSet<Customer> Customers { get; set; }
 
     /// <inheritdoc/>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
