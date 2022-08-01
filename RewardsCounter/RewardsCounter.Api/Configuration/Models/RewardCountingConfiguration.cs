@@ -1,9 +1,11 @@
-﻿namespace RewardsCounter.Api.Configuration.Models;
+﻿using RewardsCounter.Api.Configuration.Interfaces;
+
+namespace RewardsCounter.Api.Configuration.Models;
 
 /// <summary>
 /// Represents reward rules.
 /// </summary>
-public class RewardsCountingConfiguration
+public class RewardsCountingConfiguration : IRewardsCounterConfiguration
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="RewardsCountingConfiguration"/> class.
