@@ -1,6 +1,6 @@
 # Rewards counter
 
-####This is application for counting rewards according to money where spent.
+#### This is application for counting rewards according to money where spent.
 
 ## Table of contents
 
@@ -14,6 +14,8 @@
     * [Transactions per last mounth](#transactions-per-mounthspartially)
     * [Server responce](#real-server-responce)
   * [Unit tests startup](#unit-tests)
+* [Technology stack](#technology-stack)
+* [Architecture](#architecture)
     
 ## API
 
@@ -22,6 +24,9 @@
 * more about api in .../swagger/index.html
 
 ## Installation and starting
+
+#### all settings in file appsettings.Development.json
+#### db username and passwords in ClientSecrets storage
 
 ### Without Docker
 
@@ -116,4 +121,15 @@ Oliver:
 1. Open RewardsCounter.Tests
 2. Run 
 > dotnet test
+
+
+## Technology stack
+* Asp .net core 6
+* MSSQL
+* Docker
+* Docker-compose
+
+## Architecture
+![Architecture](img/scheme.jpg)
+
 
