@@ -8,7 +8,9 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="EntityFramework" Version="6.4.4" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
+        <PackageReference Include="MockQueryable.Moq" Version="6.0.1" />
         <PackageReference Include="Moq" Version="4.18.1" />
         <PackageReference Include="MSTest.TestAdapter" Version="2.2.7" />
         <PackageReference Include="MSTest.TestFramework" Version="2.2.7" />
@@ -20,7 +22,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Repositories" />
+      <Folder Include="Repositories\Models" />
     </ItemGroup>
 
 </Project>

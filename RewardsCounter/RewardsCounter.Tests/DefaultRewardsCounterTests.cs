@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RewardsCounter.Api.Configuration.Models;
 using RewardsCounter.Api.Domain;
@@ -11,6 +13,8 @@ namespace RewardsCounter.Tests;
 [TestClass]
 public class DefaultRewardsCounterTests
 {
+    private readonly ILogger<DefaultRewardsCounter> loggerMock = new NullLogger<DefaultRewardsCounter>(); 
+    
     private readonly List<Customer> testCustomers = new ()
     {
         new Customer
@@ -211,7 +215,7 @@ public class DefaultRewardsCounterTests
     public void CountReward_NullClient_NullException()
     {
         // init
-        var service = new DefaultRewardsCounter(this.defaultRewardsRules);
+        var service = new DefaultRewardsCounter(this.defaultRewardsRules, this.loggerMock);
 #pragma warning disable CS8600
         Customer customer = null;
 #pragma warning restore CS8600
@@ -230,7 +234,7 @@ public class DefaultRewardsCounterTests
     public void CountReward_120USD_90Points()
     {
         // init
-        var service = new DefaultRewardsCounter(this.defaultRewardsRules);
+        var service = new DefaultRewardsCounter(this.defaultRewardsRules, this.loggerMock);
         var customer = this.testCustomers[4];
         var expected = new decimal(90);
 
@@ -247,7 +251,7 @@ public class DefaultRewardsCounterTests
     public void CountReward_nullWithPeriod_NullException()
     {
         // init
-        var service = new DefaultRewardsCounter(this.defaultRewardsRules);
+        var service = new DefaultRewardsCounter(this.defaultRewardsRules, this.loggerMock);
 #pragma warning disable CS8600
         Customer customer = null;
 #pragma warning restore CS8600
@@ -266,7 +270,7 @@ public class DefaultRewardsCounterTests
     public void CountReward_WithInversePeriod_InvalidRequestedPeriodException()
     {
         // init
-        var service = new DefaultRewardsCounter(this.defaultRewardsRules);
+        var service = new DefaultRewardsCounter(this.defaultRewardsRules, this.loggerMock);
         var customer = this.testCustomers[4];
 
         // act
@@ -281,7 +285,7 @@ public class DefaultRewardsCounterTests
     public void CountReward_WithPeriodEarlyThenClientRegistered_InvalidRequestedPeriodException()
     {
         // init
-        var service = new DefaultRewardsCounter(this.defaultRewardsRules);
+        var service = new DefaultRewardsCounter(this.defaultRewardsRules, this.loggerMock);
         var customer = new Customer()
         {
             CreationDate = new DateTime(2023, 1, 12),
@@ -300,7 +304,7 @@ public class DefaultRewardsCounterTests
     public void CountReward_51USD_1Point()
     {
         // init
-        var service = new DefaultRewardsCounter(this.defaultRewardsRules);
+        var service = new DefaultRewardsCounter(this.defaultRewardsRules, this.loggerMock);
         var customer = this.testCustomers[2];
         var expected = new decimal(1);
 
@@ -316,7 +320,7 @@ public class DefaultRewardsCounterTests
     public void CountReward_Minus20USD_0Point()
     {
         // init
-        var service = new DefaultRewardsCounter(this.defaultRewardsRules);
+        var service = new DefaultRewardsCounter(this.defaultRewardsRules, this.loggerMock);
         var customer = new Customer()
         {
             CreationDate = new DateTime(2022, 7, 28),
