@@ -24,6 +24,13 @@ public static class DependencyInjection
             throw new ServiceNotFoundException("Can not recognize data context in service collection");
         }
 
-        serviceCollection.AddSingleton<IAppService>(new DefaultAppService(context));
+        var logger = serviceProvider.GetService<ILogger<DefaultAppService>>();
+
+        if (logger is null)
+        {
+            throw new ServiceNotFoundException("Can not recognize logger in service collection");
+        }
+
+        serviceCollection.AddSingleton<IAppService>(new DefaultAppService(context, logger));
     }
 }

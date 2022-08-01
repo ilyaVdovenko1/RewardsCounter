@@ -1,4 +1,4 @@
-﻿using RewardsCounter.Api.Configuration.Models;
+﻿using RewardsCounter.Api.Configuration.Interfaces;
 using RewardsCounter.Api.Domain;
 using RewardsCounter.Api.Exceptions;
 using RewardsCounter.Api.Services.Interfaces;
@@ -10,15 +10,18 @@ namespace RewardsCounter.Api.Services.Models;
 /// </summary>
 public class DefaultRewardsCounter : IRewardsCounter
 {
-    private readonly RewardsCountingConfiguration countingConfiguration;
+    private readonly IRewardsCounterConfiguration countingConfiguration;
+    private readonly ILogger<DefaultRewardsCounter>? logger;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="DefaultRewardsCounter"/> class.
     /// </summary>
     /// <param name="countingConfiguration">Represents reward rules.</param>
-    public DefaultRewardsCounter(RewardsCountingConfiguration countingConfiguration)
+    /// <param name="logger">Logger provider.</param>
+    public DefaultRewardsCounter(IRewardsCounterConfiguration countingConfiguration, ILogger<DefaultRewardsCounter>? logger)
     {
         this.countingConfiguration = countingConfiguration;
+        this.logger = logger;
     }
 
     /// <summary>
@@ -31,8 +34,11 @@ public class DefaultRewardsCounter : IRewardsCounter
     {
         if (customer is null)
         {
+            this.logger?.LogWarning("Unexpected null ref: customer is null.");
             throw new ArgumentNullException(nameof(customer));
         }
+
+        this.logger?.LogTrace("Processing reward for client with id {Id}", customer.Id);
 
         var clientTransactionsSum =
             transactions.Where(transaction => transaction.ClientId == customer.Id && transaction.Sum > 0).Sum(item => item.Sum);
@@ -41,6 +47,8 @@ public class DefaultRewardsCounter : IRewardsCounter
 
         var points =
             fittingBonuses.Sum(fittingBonus => (clientTransactionsSum - fittingBonus.Sum) * fittingBonus.Points);
+
+        this.logger?.LogTrace("Processed reward for client with id {Id}. Reward: {Reward}", customer.Id, points);
 
         return new Reward()
         {
@@ -61,16 +69,21 @@ public class DefaultRewardsCounter : IRewardsCounter
     {
         if (customer is null)
         {
+            this.logger?.LogWarning("Unexpected null ref: customer is null.");
             throw new ArgumentNullException(nameof(customer));
         }
 
+        this.logger?.LogTrace("Processing reward for client with id {Id} from {StartDate} to {FinishDate}", customer.Id);
+
         if (start > end)
         {
+            this.logger?.LogWarning("Start date was greater then end.");
             throw new InvalidRequestedPeriodException(nameof(start), "Start value in period can not be less then end.");
         }
 
         if (start < customer.CreationDate)
         {
+            this.logger?.LogWarning("Start date was greater then user creation date.");
             throw new InvalidRequestedPeriodException(nameof(start), "Start value can not be greater then customer registration date.");
         }
 

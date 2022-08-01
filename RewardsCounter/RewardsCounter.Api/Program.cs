@@ -1,11 +1,11 @@
 using Microsoft.EntityFrameworkCore;
+using RewardsCounter.Api.Configuration;
 using RewardsCounter.Api.Configuration.Models;
 using RewardsCounter.Api.Repositories.Data;
 using RewardsCounter.Api.Services;
 using RewardsCounter.Api.Services.Interfaces;
 using RewardsCounter.Api.Services.Models;
 
-const string connectionStringName = "DefaultConnectionString";
 const string counterOptionsName = "RewardCountingConfiguration";
 const string healthCheckRoute = "api/health";
 
@@ -13,7 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
-var connectionString = builder.Configuration.GetConnectionString(connectionStringName);
+var connectionString = ConfigureConnectionString(builder.Configuration);
 builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseSqlServer(connectionString);
@@ -28,23 +28,36 @@ builder.Services.AddHealthChecks()
 var counterOpt = builder.Configuration.GetSection(counterOptionsName);
 var rewardCountOpt = new RewardsCountingConfiguration();
 counterOpt.Bind(rewardCountOpt);
-
-builder.Services.AddSingleton<IRewardsCounter>(new DefaultRewardsCounter(rewardCountOpt));
-
+builder.Services.AddSingleton<IRewardsCounter, DefaultRewardsCounter>(opt => new DefaultRewardsCounter(rewardCountOpt, opt.GetService<ILogger<DefaultRewardsCounter>>()));
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.Logger.LogTrace("Our connection string is: {ConnectionString}", connectionString);
+app.UseSwagger();
+app.UseSwaggerUI();
 
-app.UseHttpsRedirection();
+app.PreparePopulations();
 
 app.UseAuthorization();
 
 app.MapControllers();
 app.MapHealthChecks(healthCheckRoute);
 
-app.Run();
+try
+{
+    app.Logger.LogInformation("Starting app...");
+    app.Run();
+}
+catch (Exception e)
+{
+    app.Logger.LogCritical(e, "App can not run properly.");
+}
+
+string ConfigureConnectionString(IConfiguration configurationManager)
+{
+    var server = configurationManager.GetSection("DbSettings:Server").Value ?? "localhost";
+    var initialCatalog = configurationManager.GetSection("DbSettings:Initial Catalog").Value ?? "rewards-counter-db";
+    var userName = configurationManager.GetSection("User ID").Value ?? string.Empty;
+    var password = configurationManager.GetSection("Password").Value ?? string.Empty;
+
+    return $"Server={server};Initial Catalog={initialCatalog};User ID={userName};Password={password};";
+}

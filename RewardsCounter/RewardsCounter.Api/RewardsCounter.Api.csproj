@@ -8,10 +8,11 @@
         <EnableNETAnalyzers>true</EnableNETAnalyzers>
         <AnalysisMode>AllEnabledByDefault</AnalysisMode>
         <CodeAnalysisTreatWarningsAsErrors>false</CodeAnalysisTreatWarningsAsErrors>
-        <CodeAnalysisRuleSet>code-analysis.ruleset</CodeAnalysisRuleSet>
         <DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
         <NoWarn>$(NoWarn),1573,1591,1712</NoWarn>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+        <UserSecretsId>5a11e693-3d2c-429b-a30b-29b8df9b8e29</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>
@@ -22,6 +23,7 @@
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.6" />
+        <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
         <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

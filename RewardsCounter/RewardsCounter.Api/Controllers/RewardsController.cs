@@ -22,6 +22,7 @@ public class RewardsController : ControllerBase
     /// </summary>
     /// <param name="rewardsCounterService">Counts reward.</param>
     /// <param name="appService">Main BLL service.</param>
+    /// <param name="logger">Logger provider.</param>
     public RewardsController(IRewardsCounter rewardsCounterService, IAppService appService, ILogger<RewardsController> logger)
     {
         this.rewardsCounterService = rewardsCounterService;
@@ -52,33 +53,45 @@ public class RewardsController : ControllerBase
                 PointsTotal = reward.PointsTotal,
             });
         }
+        catch (InvalidRequestedPeriodException e)
+        {
+            this.logger.LogError(e, "Invalid period where requested");
+            this.logger.LogInformation("Sending BadRequest code.");
+            return this.BadRequest();
+        }
         catch (ClientNotFoundException e)
         {
-            this.logger.LogError("Client was not found with this exception", e);
+            this.logger.LogError(e, "Client was not found with this exception");
+            this.logger.LogInformation("Sending 404 code.");
+            return this.NotFound();
+        }
+        catch (TransactionsNotFoundException e)
+        {
+            this.logger.LogError(e, "Client transactions where not found with this exception");
             this.logger.LogInformation("Sending 404 code.");
             return this.NotFound();
         }
         catch (ArgumentNullException e)
         {
-            this.logger.LogError("Null exception", e);
+            this.logger.LogError(e, "Null exception");
             this.logger.LogInformation("Sending bad request code.");
             return this.BadRequest();
         }
         catch (ServiceNotFoundException e)
         {
-            this.logger.LogError("Some critical service was not found exception", e);
+            this.logger.LogError(e, "Some critical service was not found exception.");
             this.logger.LogInformation("Sending 500 code.");
             return this.StatusCode(500);
         }
         catch (ArgumentException e)
         {
-            this.logger.LogError("ArgumentException", e);
+            this.logger.LogError(e, "ArgumentException");
             this.logger.LogInformation("Sending 500 code.");
             return this.StatusCode(500);
         }
         catch (Exception e)
         {
-            this.logger.LogCritical("Some uncaught exception", e);
+            this.logger.LogError(e, "Some uncaught exception");
             this.logger.LogInformation("Sending 500 code.");
             return this.StatusCode(500);
         }
@@ -108,33 +121,45 @@ public class RewardsController : ControllerBase
                 PointsTotal = reward.PointsTotal,
             });
         }
+        catch (InvalidRequestedPeriodException e)
+        {
+            this.logger.LogError(e, "Invalid period where requested");
+            this.logger.LogInformation("Sending BadRequest code.");
+            return this.BadRequest();
+        }
         catch (ClientNotFoundException e)
         {
-            this.logger.LogError("Client was not found with this exception", e);
+            this.logger.LogError(e, "Client was not found with this exception");
+            this.logger.LogInformation("Sending 404 code.");
+            return this.NotFound();
+        }
+        catch (TransactionsNotFoundException e)
+        {
+            this.logger.LogError(e, "Client transactions where not found with this exception");
             this.logger.LogInformation("Sending 404 code.");
             return this.NotFound();
         }
         catch (ArgumentNullException e)
         {
-            this.logger.LogError("Null exception", e);
+            this.logger.LogError(e, "Null exception");
             this.logger.LogInformation("Sending bad request code.");
             return this.BadRequest();
         }
         catch (ServiceNotFoundException e)
         {
-            this.logger.LogError("Some critical service was not found exception", e);
+            this.logger.LogError(e, "Some critical service was not found exception.");
             this.logger.LogInformation("Sending 500 code.");
             return this.StatusCode(500);
         }
         catch (ArgumentException e)
         {
-            this.logger.LogError("ArgumentException", e);
+            this.logger.LogError(e, "ArgumentException");
             this.logger.LogInformation("Sending 500 code.");
             return this.StatusCode(500);
         }
         catch (Exception e)
         {
-            this.logger.LogCritical("Some uncaught exception", e);
+            this.logger.LogError(e, "Some uncaught exception");
             this.logger.LogInformation("Sending 500 code.");
             return this.StatusCode(500);
         }
@@ -166,37 +191,43 @@ public class RewardsController : ControllerBase
         }
         catch (InvalidRequestedPeriodException e)
         {
-            this.logger.LogError("Invalid period where requested", e);
+            this.logger.LogError(e, "Invalid period where requested");
             this.logger.LogInformation("Sending BadRequest code.");
             return this.BadRequest();
         }
         catch (ClientNotFoundException e)
         {
-            this.logger.LogError("Client was not found with this exception", e);
+            this.logger.LogError(e, "Client was not found with this exception");
+            this.logger.LogInformation("Sending 404 code.");
+            return this.NotFound();
+        }
+        catch (TransactionsNotFoundException e)
+        {
+            this.logger.LogError(e, "Client transactions where not found with this exception");
             this.logger.LogInformation("Sending 404 code.");
             return this.NotFound();
         }
         catch (ArgumentNullException e)
         {
-            this.logger.LogError("Null exception", e);
+            this.logger.LogError(e, "Null exception");
             this.logger.LogInformation("Sending bad request code.");
             return this.BadRequest();
         }
         catch (ServiceNotFoundException e)
         {
-            this.logger.LogError("Some critical service was not found exception", e);
+            this.logger.LogError(e, "Some critical service was not found exception.");
             this.logger.LogInformation("Sending 500 code.");
             return this.StatusCode(500);
         }
         catch (ArgumentException e)
         {
-            this.logger.LogError("ArgumentException", e);
+            this.logger.LogError(e, "ArgumentException");
             this.logger.LogInformation("Sending 500 code.");
             return this.StatusCode(500);
         }
         catch (Exception e)
         {
-            this.logger.LogCritical("Some uncaught exception", e);
+            this.logger.LogError(e, "Some uncaught exception");
             this.logger.LogInformation("Sending 500 code.");
             return this.StatusCode(500);
         }
