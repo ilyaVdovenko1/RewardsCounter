@@ -63,21 +63,21 @@ public class UsualTransactionsTestData
         },
         new Transaction()
         {
-            ClientId = Guid.Parse("b96c7e78-46bd-4057-8990-e3d2f82e0e8b"),
+            ClientId = Guid.Parse("99135b8d-cda6-493a-8994-6faecd21bf48"),
             Id = Guid.NewGuid(),
             Sum = new decimal(100),
             Timestamp = new DateTime(2022, 7, 22),
         },
         new Transaction()
         {
-            ClientId = Guid.Parse("b96c7e78-46bd-4057-8990-e3d2f82e0e8b"),
+            ClientId = Guid.Parse("99135b8d-cda6-493a-8994-6faecd21bf48"),
             Id = Guid.NewGuid(),
             Sum = new decimal(100),
             Timestamp = new DateTime(2022, 6, 22),
         },
         new Transaction()
         {
-            ClientId = Guid.Parse("b96c7e78-46bd-4057-8990-e3d2f82e0e8b"),
+            ClientId = Guid.Parse("99135b8d-cda6-493a-8994-6faecd21bf48"),
             Id = Guid.NewGuid(),
             Sum = new decimal(50),
             Timestamp = new DateTime(2022, 5, 22),
@@ -123,21 +123,21 @@ public class UsualTransactionsTestData
         },
         new Transaction()
         {
-            ClientId = Guid.Parse("b96c7e78-46bd-4057-8990-e3d2f82e0e8b"),
+            ClientId = Guid.Parse("de632b7e-627d-4bfe-9f96-edc290d32bbe"),
             Id = Guid.NewGuid(),
             Sum = new decimal(100),
             Timestamp = new DateTime(2022, 7, 22),
         },
         new Transaction()
         {
-            ClientId = Guid.Parse("b96c7e78-46bd-4057-8990-e3d2f82e0e8b"),
+            ClientId = Guid.Parse("de632b7e-627d-4bfe-9f96-edc290d32bbe"),
             Id = Guid.NewGuid(),
             Sum = new decimal(50),
             Timestamp = new DateTime(2022, 3, 22),
         },
         new Transaction()
         {
-            ClientId = Guid.Parse("b96c7e78-46bd-4057-8990-e3d2f82e0e8b"),
+            ClientId = Guid.Parse("de632b7e-627d-4bfe-9f96-edc290d32bbe"),
             Id = Guid.NewGuid(),
             Sum = new decimal(50),
             Timestamp = new DateTime(2022, 5, 22),
@@ -189,21 +189,21 @@ public class UsualTransactionsTestData
         },
         new Transaction()
         {
-            ClientId = Guid.Parse("b96c7e78-46bd-4057-8990-e3d2f82e0e8b"),
+            ClientId = Guid.Parse("7203c9dd-6778-435e-8788-ce3532393fd0"),
             Id = Guid.NewGuid(),
             Sum = new decimal(40),
             Timestamp = new DateTime(2022, 7, 22),
         },
         new Transaction()
         {
-            ClientId = Guid.Parse("b96c7e78-46bd-4057-8990-e3d2f82e0e8b"),
+            ClientId = Guid.Parse("7203c9dd-6778-435e-8788-ce3532393fd0"),
             Id = Guid.NewGuid(),
             Sum = new decimal(100),
             Timestamp = new DateTime(2022, 6, 22),
         },
         new Transaction()
         {
-            ClientId = Guid.Parse("b96c7e78-46bd-4057-8990-e3d2f82e0e8b"),
+            ClientId = Guid.Parse("7203c9dd-6778-435e-8788-ce3532393fd0"),
             Id = Guid.NewGuid(),
             Sum = new decimal(50),
             Timestamp = new DateTime(2022, 5, 22),
