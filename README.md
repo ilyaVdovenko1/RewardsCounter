@@ -39,9 +39,9 @@
 ### With Docker
 
 1. Open repo and run:
-> docker-composer build
+> docker-compose build
 
-> docker-composer up
+> docker-compose up
 
 2. Rerun app container if smth went wrong.
 
